@@ -16,12 +16,14 @@
                 <input type="checkbox" v-model="task.isCompleted"> {{task.title}}
             </li>
         </ul>
+
         <h2>Completed Tasks</h2>
         <ul>
-            <li v-for="task in completeTasks">
+            <li v-for="task in completedTasks">
                 <input type="checkbox" v-model="task.isCompleted"> {{task.title}}
             </li>
         </ul>
+
         <h2>Incompleted Tasks</h2>
         <ul>
             <li v-for="task in incompletedTasks">
@@ -43,15 +45,14 @@
                 }, {
                     title: 'Task3',
                     isCompleted: false
-                }],
-				text: ''
+                }]
             },
             methods: {
                 add() {
+                    this.task.push({
                         title: this.text,
                         isCompleted: false
                     });
-                    
                     this.text = '';
                 }
             },
@@ -59,7 +60,7 @@
                 allTasks() {
                     return this.task
                 },
-                completeTasks() {
+                completedTasks() {
                     return this.task.filter(task => task.isCompleted)
                 },
                 incompletedTasks() {
